@@ -1,0 +1,26 @@
+*
+!.gitignore
+!README.md
+!.config
+!.config/nvim
+!.config/nvim/**
+!.config/tmux
+!.config/tmux/**
+.config/tmux/plugins/**
+!.config/wezterm
+!.config/wezterm/**
+!.config/fish
+!.config/fish/config.fish
+!.config/fish/custom
+!.config/fish/custom/*
+!.config/biome-nest.json
+!.config/biome.json
+!.config/.editorconfig
+!.claude
+!.claude/commands
+!.claude/commands/**
+!.claude/CLAUDE.md
+!Library
+!Library/Application\ Support
+!Library/Application\ Support/lazygit
+!Library/Application\ Support/lazygit/config.yml
