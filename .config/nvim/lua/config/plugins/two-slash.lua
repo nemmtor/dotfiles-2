@@ -1,8 +1,7 @@
 return {
   {
     "marilari88/twoslash-queries.nvim",
-    lazy = true,
-    ft = "javascript,typescript,typescriptreact,svelte",
+    ft = { "javascript", "typescript", "typescriptreact", "svelte" },
     config = function()
       require("twoslash-queries").setup({
         is_enabled = true,

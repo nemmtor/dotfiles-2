@@ -40,3 +40,13 @@ vim.opt.foldcolumn = "1"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+
+-- Suppress position_encoding deprecation warning (Neovim 0.11+, waiting for plugin updates)
+local original_notify = vim.notify
+---@diagnostic disable-next-line: duplicate-set-field
+vim.notify = function(msg, level, opts)
+  if type(msg) == "string" and msg:match("position_encoding param is required") then
+    return
+  end
+  return original_notify(msg, level, opts)
+end

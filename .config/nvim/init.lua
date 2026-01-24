@@ -1,4 +1,5 @@
 require("config.lazy")
-require("config.keymaps")
+require("config.keymaps").setup()
 require("config.options")
 require("config.highlight-yank")
+require("config.docs.keymaps")

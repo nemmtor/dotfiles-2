@@ -34,6 +34,12 @@ TypeScript, JavaScript, CSS, SCSS, HTML, Lua, Python, Ruby, Go, Rust, Kotlin, Ja
 - Keyboard-centric power users
 - Terminal-based IDE seekers
 
+### Performance
+- **Startup time: 84ms** (optimized from 134ms)
+- Aggressive lazy-loading via lazy.nvim
+- Telescope, treesitter, completion load on-demand
+- LSP keymaps bind only on LspAttach
+
 ---
 
 ## 2. Project Structure Analysis
@@ -46,8 +52,17 @@ TypeScript, JavaScript, CSS, SCSS, HTML, Lua, Python, Ruby, Go, Rust, Kotlin, Ja
 ├── lua/config/
 │   ├── lazy.lua               # Plugin manager bootstrap
 │   ├── options.lua            # Vim settings
-│   ├── keymaps.lua            # Global keybindings
 │   ├── highlight-yank.lua     # Yank visual feedback
+│   ├── health.lua             # :checkhealth integration
+│   ├── keymaps/               # Modular keymap definitions
+│   │   ├── init.lua           # Keymap loader
+│   │   ├── general.lua        # Editing keymaps
+│   │   └── lsp.lua            # LSP keymaps (on_attach)
+│   ├── lsp/                   # Modular LSP configuration
+│   │   ├── init.lua           # LSP aggregator
+│   │   ├── capabilities.lua   # LSP capabilities
+│   │   ├── on_attach.lua      # Shared on_attach
+│   │   └── servers/           # Per-server configs
 │   ├── plugins/               # 22 plugin configurations
 │   │   ├── lsp.lua            # Mason + LSP servers
 │   │   ├── completion.lua     # Blink.cmp

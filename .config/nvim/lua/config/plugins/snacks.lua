@@ -6,5 +6,6 @@ return {
   opts = {
     bigfile = { enabled = true },
     input = { enabled = true },
+    picker = { enabled = true, ui_select = true },
   },
 }
