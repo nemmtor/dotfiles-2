@@ -1,5 +1,6 @@
 local M = {}
 
+M.dap = require("config.keymaps.dap")
 M.general = require("config.keymaps.general")
 M.lsp = require("config.keymaps.lsp")
 

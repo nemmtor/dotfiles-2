@@ -20,6 +20,8 @@
 !.claude/commands
 !.claude/commands/**
 !.claude/CLAUDE.md
+!.claude/skills
+!.claude/skills/**
 !Library
 !Library/Application\ Support
 !Library/Application\ Support/lazygit
