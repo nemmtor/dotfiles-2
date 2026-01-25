@@ -38,7 +38,9 @@ return {
       require("mason-tool-installer").setup({
         ensure_installed = {
           "clang-format",
+          "codelldb",
           "djlint",
+          "js-debug-adapter",
           "json-lsp",
         },
       })
