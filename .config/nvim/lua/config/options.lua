@@ -40,6 +40,8 @@ vim.opt.foldcolumn = "1"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- Suppress position_encoding deprecation warning (Neovim 0.11+, waiting for plugin updates)
 local original_notify = vim.notify

@@ -29,7 +29,7 @@ return {
         "jay-babu/mason-nvim-dap.nvim",
         dependencies = { "mason-org/mason.nvim" },
         opts = {
-          ensure_installed = { "js", "codelldb" },
+          ensure_installed = { "js" },
           automatic_installation = true,
         },
       },

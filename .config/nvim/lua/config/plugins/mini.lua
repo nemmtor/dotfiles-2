@@ -37,14 +37,6 @@ return {
 
         hex_color = hipatterns.gen_highlighter.hex_color(),
       })
-
-      local notify = require("mini.notify")
-      notify.setup()
-      vim.notify = notify.make_notify({
-        ERROR = { duration = 2000 },
-        WARN = { duration = 1000 },
-        INFO = { duration = 1000 },
-      })
     end,
   },
 }

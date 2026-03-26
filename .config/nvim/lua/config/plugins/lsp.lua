@@ -24,24 +24,21 @@ return {
 
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "biome",
-          "clangd",
+          "eslint",
           "lua_ls",
           "marksman",
-          "neocmake",
           "stylua",
           "tailwindcss",
           "vimls",
+          "graphql",
         },
       })
 
       require("mason-tool-installer").setup({
         ensure_installed = {
-          "clang-format",
-          "codelldb",
-          "djlint",
           "js-debug-adapter",
           "json-lsp",
+          "prettier",
         },
       })
 
@@ -51,7 +48,7 @@ return {
           if not client then
             return
           end
-          lsp.on_attach.on_attach(client, args.buf)
+          require("config.keymaps.lsp").on_attach(client, args.buf)
         end,
       })
     end,

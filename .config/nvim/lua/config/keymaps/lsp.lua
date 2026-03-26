@@ -22,7 +22,6 @@ function M.on_attach(client, bufnr)
   vim.keymap.set("n", "<space>la", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
   vim.keymap.set("n", "<space>lc", function()
     local has_eslint = false
-    local has_biome = false
     local clients = vim.lsp.get_clients({ bufnr = bufnr })
 
     for _, c in ipairs(clients) do
@@ -30,29 +29,20 @@ function M.on_attach(client, bufnr)
         has_eslint = true
         break
       end
-      if c.name == "biome" then
-        has_biome = true
-        break
-      end
     end
 
     if has_eslint and vim.fn.exists(":EslintFixAll") > 0 then
       vim.cmd("EslintFixAll")
-    elseif has_biome then
-      vim.notify("Not doable with Biome", vim.log.levels.INFO)
     else
       vim.notify("No linter attached", vim.log.levels.WARN)
     end
   end, vim.tbl_extend("force", opts, { desc = "Lint fix all" }))
 
-  -- LSP navigation (via telescope)
-  local ok, builtin = pcall(require, "telescope.builtin")
-  if ok then
-    vim.keymap.set("n", "gr", builtin.lsp_references, vim.tbl_extend("force", opts, { desc = "References" }))
-    vim.keymap.set("n", "gd", builtin.lsp_definitions, vim.tbl_extend("force", opts, { desc = "Definition" }))
-    vim.keymap.set("n", "gi", builtin.lsp_implementations, vim.tbl_extend("force", opts, { desc = "Implementation" }))
-    vim.keymap.set("n", "gt", builtin.lsp_type_definitions, vim.tbl_extend("force", opts, { desc = "Type definition" }))
-  end
+  -- LSP navigation (via snacks picker)
+  vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, vim.tbl_extend("force", opts, { desc = "References" }))
+  vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, vim.tbl_extend("force", opts, { desc = "Definition" }))
+  vim.keymap.set("n", "gi", function() Snacks.picker.lsp_implementations() end, vim.tbl_extend("force", opts, { desc = "Implementation" }))
+  vim.keymap.set("n", "gt", function() Snacks.picker.lsp_type_definitions() end, vim.tbl_extend("force", opts, { desc = "Type definition" }))
 end
 
 return M

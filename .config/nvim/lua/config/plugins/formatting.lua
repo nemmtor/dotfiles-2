@@ -31,8 +31,7 @@ return {
     }
 
     for _, ft in ipairs(js_filetypes) do
-      -- formatters_by_ft[ft] = { "biome", "prettier", "deno_fmt" }
-      formatters_by_ft[ft] = { "biome", "biome-organize-imports" }
+      formatters_by_ft[ft] = { "prettier" }
     end
 
     conform.setup({
