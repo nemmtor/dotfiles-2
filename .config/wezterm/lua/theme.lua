@@ -58,12 +58,11 @@ M.apply = function(config)
   config.window_decorations = "RESIZE"
   config.bold_brightens_ansi_colors = false
   config.show_new_tab_button_in_tab_bar = false
-  config.text_background_opacity = 0.9
+  config.text_background_opacity = 0.85
   config.window_background_image = os.getenv("HOME") .. "/.config/wezterm/bg.png"
   config.window_background_image_hsb = {
-    brightness = 0.01,
+    brightness = 0.2,
     hue = 1,
-    saturation = 0.6,
   }
 end
 
