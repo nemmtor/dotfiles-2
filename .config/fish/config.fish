@@ -1,3 +1,7 @@
+if test -f ~/.config/fish/local.env.fish
+    source ~/.config/fish/local.env.fish
+end
+
 set -gx VCPKG_ROOT $HOME/vcpkg
 if status is-interactive
     set -lx PATH_DIRECTORIES \
