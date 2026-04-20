@@ -50,6 +50,7 @@ if status is-interactive
     # development
     alias b="bun"
     alias p="pnpm"
+    alias t="tmux"
 
     # directories
     alias pro="cd ~/Projects"
@@ -73,6 +74,10 @@ if status is-interactive
 
     fish_vi_key_bindings
 end
+
+# playbook CLI shell setup (function wrapper + completions)
+set -l __playbook_fish ~/Projects/playbook/playbook-workspace/completions/playbook.fish
+test -f $__playbook_fish; and source $__playbook_fish
 
 # tabtab source for packages
 # uninstall by removing these lines
