@@ -18,6 +18,21 @@ if status is-interactive
 
     set -x PATH $PATH_DIRECTORIES $PATH
 
+    # fish-nvm lazy-loads (only node/npm/npx/yarn trigger `nvm use`), so global
+    # CLIs like openspec — whose launcher lives in the node version's bin — are
+    # invisible in a fresh shell until an npm command runs. Resolve the `default`
+    # alias and prepend its bin now. ~40x cheaper than sourcing nvm.sh.
+    if test -d ~/.nvm/versions/node
+        set -l __nvm_ref default
+        for __i in 1 2 3 4 5
+            string match -qr '^v[0-9]' -- $__nvm_ref; and break
+            test -f ~/.nvm/alias/$__nvm_ref; or break
+            set __nvm_ref (string trim < ~/.nvm/alias/$__nvm_ref)
+        end
+        set -l __nvm_bin ~/.nvm/versions/node/$__nvm_ref/bin
+        test -d $__nvm_bin; and set -gx PATH $__nvm_bin $PATH
+    end
+
     set -gx PHP_INI_SCAN_DIR $HOME/.config/herd-lite/bin
     set -gx GPG_TTY (tty)
 
@@ -45,6 +60,7 @@ if status is-interactive
     alias copy="pbcopy <"
     alias v="nvim"
     alias vim="nvim"
+    alias new-vim="NVIM_APPNAME=nvim-new nvim"
     alias python="python3"
 
     # development
@@ -57,6 +73,7 @@ if status is-interactive
 
     # config files
     alias nvimrc="vim ~/.config/nvim"
+    alias herdrrc="vim ~/.config/herdr"
     alias fishrc="vim ~/.config/fish/config.fish"
     alias weztermrc="vim ~/.config/wezterm/wezterm.lua"
 
@@ -99,9 +116,9 @@ function gcloud -d "Lazy-load gcloud"
     gcloud $argv
 end
 
-if type -q tmux; and status is-interactive; and not string match -qr 'screen|tmux' -- "$TERM"; and test -z "$TMUX"
-    tmux
-end
+# if type -q tmux; and status is-interactive; and not string match -qr 'screen|tmux' -- "$TERM"; and test -z "$TMUX"
+#     tmux
+# end
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
