@@ -4,6 +4,8 @@
 !.config
 !.config/nvim
 !.config/nvim/**
+!.config/nvim-new
+!.config/nvim-new/**
 !.config/tmux
 !.config/tmux/**
 .config/tmux/plugins/**
@@ -13,6 +15,8 @@
 !.config/fish/config.fish
 !.config/fish/custom
 !.config/fish/custom/*
+!.config/herdr
+!.config/herdr/config.toml
 !.config/biome-nest.json
 !.config/biome.json
 !.config/.editorconfig

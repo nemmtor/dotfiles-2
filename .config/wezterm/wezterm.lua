@@ -10,4 +10,7 @@ end
 
 theme.apply(config)
 keys.apply(config)
+
+config.enable_kitty_graphics = true
+
 return config
