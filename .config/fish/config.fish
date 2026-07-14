@@ -60,7 +60,7 @@ if status is-interactive
     alias copy="pbcopy <"
     alias v="nvim"
     alias vim="nvim"
-    alias new-vim="NVIM_APPNAME=nvim-new nvim"
+    alias nvim-new="NVIM_APPNAME=nvim-new nvim"
     alias python="python3"
 
     # development
@@ -124,6 +124,8 @@ end
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 ~/.local/bin/mise activate fish | source
+
+direnv hook fish | source
 
 # TokyoNight Color Palette
 set -l foreground c0caf5

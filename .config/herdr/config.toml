@@ -1,0 +1,13 @@
+onboarding = false
+[keys]
+prefix = "ctrl+s"
+
+[ui.toast]
+delivery = "system"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+# mouse_capture = false # workaround for swallowed ESC, see herdr issue #1334
+
+[experimental]
+kitty_graphics = true
