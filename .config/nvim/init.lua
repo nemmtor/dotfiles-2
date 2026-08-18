@@ -487,7 +487,6 @@ do -- ensure mason tools installed
     "efm",
     "lua-language-server",
     "bash-language-server",
-    "typescript-language-server",
     "json-lsp",
     "stylua",
     "prettierd",
@@ -578,7 +577,7 @@ local function lsp_on_attach(ev)
   local bufnr = ev.buf
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
-  if client.name == "ts_ls" then
+  if client.name == "tsc" then
     require("twoslash-queries").attach(client, bufnr)
   end
 
@@ -614,19 +613,7 @@ local function lsp_on_attach(ev)
     })
   end
 
-  if client.name == "ts_ls" then
-    -- code-action organizeImports is forced non-destructive (never removes
-    -- unused imports); the executeCommand path defaults to mode "All"
-    vim.keymap.set("n", "<leader>oi", function()
-      client:exec_cmd({
-        title = "Organize Imports",
-        command = "_typescript.organizeImports",
-        arguments = { vim.api.nvim_buf_get_name(bufnr) },
-      }, { bufnr = bufnr }, function()
-        format_buf()
-      end)
-    end, opts)
-  elseif client:supports_method("textDocument/codeAction", bufnr) then
+  if client:supports_method("textDocument/codeAction", bufnr) then
     vim.keymap.set("n", "<leader>oi", function()
       vim.lsp.buf.code_action({
         context = { only = { "source.organizeImports" }, diagnostics = {} },
@@ -707,18 +694,15 @@ vim.lsp.config("bashls", {})
 vim.lsp.config("jsonls", {
   init_options = { provideFormatter = false },
 })
-local ts_inlay_hints = {
-  includeInlayParameterNameHints = "all",
-  includeInlayFunctionParameterTypeHints = true,
-  includeInlayVariableTypeHints = true,
-  includeInlayPropertyDeclarationTypeHints = true,
-  includeInlayFunctionLikeReturnTypeHints = true,
-  includeInlayEnumMemberValueHints = true,
-}
-vim.lsp.config("ts_ls", {
+-- native TypeScript 7 LSP (tsc --lsp); nvim-lspconfig defaults enable all
+-- inlay hint kinds except parameterNames="literals" — bump that to "all"
+vim.lsp.config("tsc", {
   settings = {
-    typescript = { inlayHints = ts_inlay_hints },
-    javascript = { inlayHints = ts_inlay_hints },
+    ["js/ts"] = {
+      inlayHints = {
+        parameterNames = { enabled = "all" },
+      },
+    },
   },
 })
 vim.lsp.config("gopls", {
@@ -816,7 +800,7 @@ vim.lsp.enable({
   -- "pyright",
   "bashls",
   "jsonls",
-  "ts_ls",
+  "tsc",
   "eslint",
   -- oxlint/oxfmt have workspace_required root markers (.oxlintrc.json,
   -- .oxfmtrc.json, oxlint/oxfmt in package.json), so they attach only in
