@@ -14,11 +14,11 @@
       "version": "1.0.0 - 2.0.0"
     },
     "codediff.nvim": {
-      "rev": "e08a35a56a52c290398ebfaec33c34cfcf2d0f3c",
+      "rev": "a9b716fb9aa70002cf7a7583148ad31cc7c5fa90",
       "src": "https://github.com/esmuellert/codediff.nvim"
     },
     "efmls-configs-nvim": {
-      "rev": "678debafc5866958d815438c7d8ec014e22f8d94",
+      "rev": "f145a2e8212a195d44c1430e76cbc96efb0afb08",
       "src": "https://github.com/creativenull/efmls-configs-nvim"
     },
     "mason.nvim": {
@@ -26,7 +26,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "e58ad4b0c9e9376096b9704f98fc00d4c9448870",
+      "rev": "ee23d71c02440668cbca5b0cd8640d79d5bc250b",
       "src": "https://www.github.com/echasnovski/mini.nvim"
     },
     "navi.nvim": {
@@ -34,11 +34,11 @@
       "src": "https://github.com/kitlangton/navi.nvim"
     },
     "nvim-lspconfig": {
-      "rev": "51dbf5359da86721662c87ca10eb73add973737b",
+      "rev": "84252f9832fb5b9024fe9f7258e7c2aff915e6fb",
       "src": "https://www.github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
+      "rev": "41416e81a6c7f4af4984395bfe0cd8d174e70976",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
