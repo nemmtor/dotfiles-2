@@ -45,7 +45,7 @@ local function set_options()
   vim.opt.autoread = true -- auto-reload changes if outside of neovim
   vim.opt.autowrite = false -- do not auto-save
 
-  vim.opt.hidden = true -- allow hidden buffers
+  vim.opt.hidden = false -- require saving changes before switching buffers
   vim.opt.errorbells = false -- no error sounds
   vim.opt.backspace = "indent,eol,start" -- better backspace behaviour
   vim.opt.autochdir = false -- do not autochange directories
@@ -391,6 +391,11 @@ vim.keymap.set("n", "<space>lr", vim.lsp.buf.rename, { desc = "Rename" })
 vim.keymap.set("n", "<space>la", vim.lsp.buf.code_action, { desc = "Code Action" })
 
 vim.keymap.set("n", "<F1>", function()
+  if vim.bo.buftype == "" and vim.bo.modified then
+    vim.notify("Save or discard changes before opening Oil", vim.log.levels.WARN)
+    return
+  end
+
   require("oil").toggle_float()
 end, { desc = "Toggle FileTree" })
 
